@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>XLSServlet</servlet-name>
+        <servlet-class>com.xlsload.servlet.XLSServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>XLSServlet</servlet-name>
+        <url-pattern>/XLSServlet.xls</url-pattern>
+    </servlet-mapping>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>XLSServlet</web-resource-name>
+            <url-pattern>/XLSServlet.xls</url-pattern>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+
+        <auth-constraint>
+            <role-name>tomcat9</role-name>
+            <role-name>AdminRole</role-name>
+            
+        </auth-constraint>
+    </security-constraint>
+    
+    <security-role>
+      <role-name>tomcat9</role-name>
+      <role-name>AdminRole</role-name>
+      <role-name>UserRole</role-name>
+   </security-role>
+    
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>Authorized Users Only</realm-name>
+    </login-config>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
